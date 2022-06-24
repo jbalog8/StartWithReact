@@ -12,13 +12,14 @@
 
 .input{
   min-height: 32px;
-  border: 1px solid black;
+  border: 1px solid blue;
   padding: 0 8px;
 }
 
+
 .button{
   min-height: 32px;
-  border: 1px solid black;
+  border: 1px solid blue;
   background-color: gray;
   color: white;
   padding: 0 8 px;
