@@ -1,3 +1,5 @@
+import "./FormError.css"
+
 function FormError(props) {
     if (!props.visible) {
         return null;
