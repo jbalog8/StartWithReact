@@ -9,13 +9,7 @@ import FormMessage from "./components/FormMessage";
 function App() {
   const isSignedIn = true;
 
-  let formMessageComponet = null;
-  if (isSignedIn) {
-    formMessageComponet =
-      (<div className="form-message">
-        Successful Sign in!
-      </div>)
-  }
+
 
   return (
     <form className="form">
