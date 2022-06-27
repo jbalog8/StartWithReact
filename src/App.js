@@ -1,29 +1,19 @@
 import "./App.css";
 import { InputElement } from "./components/InputElement";
 import Button from "./components/Button";
+import FormError from "./components/FormError";
+import FormMessage from "./components/FormMessage";
 
-function FormError(props) {
-  if (!props.visible) {
-    return null;
-  }
-  return <div className="form-error">Failed to Sign In!</div>
-}
 
-function FormMessage(props) {
-  if (!props.visible) {
-    return null;
-  }
-  return <div className="from-message">Successfully Sign In1</div>
-}
 
 function App() {
-  const isSignedIn = false;
+  const isSignedIn = true;
 
   let formMessageComponet = null;
   if (isSignedIn) {
     formMessageComponet =
       (<div className="form-message">
-      Successful Sign in!
+        Successful Sign in!
       </div>)
   }
 
@@ -40,7 +30,7 @@ function App() {
         <Button type="reset">Reset</Button>
       </div>
       <FormError visible={!isSignedIn} />
-      <FormMessage visible = {isSignedIn} />
+      <FormMessage visible={isSignedIn} />
     </form>
   );
 }
