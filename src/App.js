@@ -2,8 +2,22 @@ import "./App.css";
 import { InputElement } from "./components/InputElement";
 import Button from "./components/Button";
 
+function FormError(props) {
+  if (!props.visible) {
+    return null;
+  }
+  return <div className="form-error">Failed to Sign In!</div>
+}
+
+function FormMessage(props) {
+  if (!props.visible) {
+    return null;
+  }
+  return <div className="from-message">Successfully Sign In1</div>
+}
+
 function App() {
-  const isSignedIn = true;
+  const isSignedIn = false;
 
   let formMessageComponet = null;
   if (isSignedIn) {
@@ -25,11 +39,8 @@ function App() {
         <Button type="button">Sign in</Button>
         <Button type="reset">Reset</Button>
       </div>
-      {!isSignedIn && <div className="form-error">
-        Failed to Sign in
-      </div>}
-      {formMessageComponet}
-
+      <FormError visible={!isSignedIn} />
+      <FormMessage visible = {isSignedIn} />
     </form>
   );
 }
