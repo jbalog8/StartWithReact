@@ -11,7 +11,7 @@ function App() {
   return (
     <form className="form">
       <div>
-        <User src="/EricCArtman.png" alt="Eric" username ="Eric"></User>
+        {isSignedIn && <User src="/EricCArtman.png" alt="Eric" username="Eric"></User>}
       </div>
       <div className="form-field">
         <InputElement label="Username" type="text" />
