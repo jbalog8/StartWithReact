@@ -3,16 +3,16 @@ import { InputElement } from "./components/InputElement";
 import Button from "./components/Button";
 import FormError from "./components/FormError";
 import FormMessage from "./components/FormMessage";
-
-
+import { User } from "./components/User";
 
 function App() {
   const isSignedIn = true;
-
-
-
+ 
   return (
     <form className="form">
+      <div>
+        <User src="/EricCArtman.png" alt="Eric" username ="Eric"></User>
+      </div>
       <div className="form-field">
         <InputElement label="Username" type="text" />
       </div>
