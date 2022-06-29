@@ -35,9 +35,15 @@ function App() {
   const showErrorMessage = error !== null;
   const showFormMessage = user !== null;
 
+ const signOut = () => {
+    setUser(null);
+    setError(null);
+  }
+
   return (
     <div>
       {isSignedIn && <User src="/EricCartman.png" alt="Eric" username={user.username} />}
+
 
       {!isSignedIn && <form className="form" onSubmit={handleSubmit}>
         <div className="form-field">
@@ -49,12 +55,16 @@ function App() {
         <div className="form-field">
           <Button type="submit">Sign in</Button>
           <Button type="reset">Reset</Button>
+          
         </div>
         <FormError visible={showErrorMessage} />
         <FormMessage visible={showFormMessage} />
       </form>}
 
+      
       <Counter initialValue={0} />
+
+       {isSignedIn && <Button type="button" onClick={signOut}>Sign out</Button>}
 
     </div>
 

@@ -4,6 +4,7 @@ button {
     background-color: teal;
     color: white;
     padding: 0 8px;
+    margin: 5px 16px;
 }
 
 .button + .button {
