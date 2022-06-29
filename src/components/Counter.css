@@ -3,7 +3,7 @@
     padding: 16px;
     background-color: teal;
     color: white;
-    margin: 0 16px;
+    margin: 5px 16px;
 }
 
 .counter + .counter {
