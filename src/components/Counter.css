@@ -5,3 +5,7 @@
     color: white;
     margin: 0 16px;
 }
+
+.counter + .counter {
+    margin-left: 4px;
+}

@@ -30,7 +30,7 @@ function App() {
       <FormError visible={!isSignedIn} />
       <FormMessage visible={isSignedIn} />
      </form>
-      <Counter />
+      <Counter initialValue={0} />
     </div>
      
   );
