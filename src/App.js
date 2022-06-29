@@ -8,26 +8,36 @@ import { Counter } from "./components/Counter";
 import { useState } from "react";
 
 function App() {
-  const [formState, setFormState] = useState({ username: '', password: '' });
 
-  const isSignedIn = true;
+  const [formState, setFormState] = useState({ username: '', password: '' });
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formState);
+
+    if (formState.password === 'password') {
+      setUser(formState);
+      setError(null);
+    } else {
+      setError(true);
+    }
   }
 
   const handleChange = (event) => {
     setFormState((state) => ({
-      ...state,
-      [event.target.name]: event.target.value,
+          ...state,
+          [event.target.name]: event.target.value,
     }));
   }
 
+  const isSignedIn = user !== null;
+  const showErrorMessage = error !== null;
+  const showFormMessage = user !== null;
 
   return (
     <div>
-      {isSignedIn && <User src="/EricCartman.png" alt="Eric" username="Eric" />}
+      {isSignedIn && <User src="/EricCartman.png" alt="Eric" username={user.username} />}
 
      <form className="form" onSubmit={handleSubmit}>
         <div className="form-field">
@@ -40,10 +50,12 @@ function App() {
           <Button type="submit">Sign in</Button>
           <Button type="reset">Reset</Button>
         </div>
-        <FormError visible={!isSignedIn} />
-        <FormMessage visible={isSignedIn} />
+        <FormError visible={showErrorMessage} />
+        <FormMessage visible={showFormMessage} />
       </form>
+
       <Counter initialValue={0} />
+
     </div>
 
   );
