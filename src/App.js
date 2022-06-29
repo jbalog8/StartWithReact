@@ -5,37 +5,41 @@ import FormError from "./components/FormError";
 import FormMessage from "./components/FormMessage";
 import { User } from "./components/User";
 import { Counter } from "./components/Counter";
+import { useState } from "react";
 
 function App() {
+  const [formState, setFormState] = useState({ username: '', password: '' });
+
   const isSignedIn = true;
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('submit');
+    console.log(formState);
   }
 
-  const handelChange = (evet) => {
-    console.log(evet);
+  const handleChange = (event) => {
+    setFormState((state) => ({
+      ...state,
+      [event.target.name]: event.target.value,
+    }));
   }
+
 
   return (
     <div>
       {isSignedIn && <User src="/EricCartman.png" alt="Eric" username="Eric" />}
 
-      <form className="form" onSubmit={handleSubmit}>
+     <form className="form" onSubmit={handleSubmit}>
         <div className="form-field">
-          <InputElement label="Username" type="text" onChange={handelChange} />
+          <InputElement name="username" label="Username" type="text" onChange={handleChange} />
         </div>
-
         <div className="form-field">
-          <InputElement label="Password" type="password" onChange={handelChange} />
+          <InputElement name="password" label="Password" type="password" onChange={handleChange} />
         </div>
-
         <div className="form-field">
           <Button type="submit">Sign in</Button>
           <Button type="reset">Reset</Button>
         </div>
-
         <FormError visible={!isSignedIn} />
         <FormMessage visible={isSignedIn} />
       </form>
