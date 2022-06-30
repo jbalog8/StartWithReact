@@ -1,8 +1,6 @@
 .form {
   padding: 16px;
 }
-
-.form-field+.form-field {
+.form-field + .form-field {
   margin-top: 16px;
 }
-

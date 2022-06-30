@@ -1,13 +1,10 @@
-button {
-    min-height: 32px;
-    border: 1px solid teal;
-    background-color: teal;
-    color: white;
-    padding: 0 8px;
-    
-   
+.button {
+  min-height: 32px;
+  border: 1px solid teal;
+  background-color: teal;
+  color: white;
+  padding: 0 8px;
 }
-
 .button + .button {
-    margin-left: 4px;
+  margin-left: 4px;
 }
