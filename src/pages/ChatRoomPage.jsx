@@ -5,13 +5,13 @@ import { useState } from "react";
 
 export function ChatRoomPage(props) {
   const [formState, setFormState] = useState({ message: '' });
-
+  const [messeges, setMessages] = useState([]);
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (formState.message !== '') {
-      // Send message
-      console.log(formState);
+      setMessages((state) => [...state, formState]);
+      
     }
   }
   
@@ -22,6 +22,7 @@ export function ChatRoomPage(props) {
     }));
   }
 
+  console.log(messeges);
   return (
     <div>
       <Button type="button" onClick={props.onSignOut}>Sign out</Button>
