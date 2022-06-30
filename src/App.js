@@ -16,11 +16,13 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (formState.username === '') { setError(true);
+    if (formState.username === '') {
+      setError(true);
       
     } else {
      setUser(formState);
       setError(null);
+      setFormState({username:''})
     }
   }
 
