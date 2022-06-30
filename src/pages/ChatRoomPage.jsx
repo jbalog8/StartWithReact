@@ -2,6 +2,7 @@ import Button from "../components/Button";
 import { InputElement } from "../components/InputElement";
 import { User } from "../components/User";
 import { useState } from "react";
+import { useEffect } from "react";
 
 export function ChatRoomPage(props) {
   const [formState, setFormState] = useState({ message: '' });
@@ -23,12 +24,15 @@ export function ChatRoomPage(props) {
     }));
   }
 
-  console.log(messages);
-
+  const messageElements = messages.map((item) => <div>{item.message}</div>);
+  
   return (
     <div>
+
       <Button type="button" onClick={props.onSignOut}>Sign out</Button>
+
       <User src="/avatar.png" username={props.user.username} />
+
       <form className="form" onSubmit={handleSubmit}>
         <div className="form-field">
           <InputElement name="message"
@@ -37,10 +41,12 @@ export function ChatRoomPage(props) {
             onChange={handleChange}
             value={formState.message} />
         </div>
+
         <div className="form-field">
           <Button type="submit">Send</Button>
         </div>
       </form>
+      {messageElements}
     </div>
   );
 }
