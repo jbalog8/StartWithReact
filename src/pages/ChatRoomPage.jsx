@@ -5,13 +5,14 @@ import { useState } from "react";
 
 export function ChatRoomPage(props) {
   const [formState, setFormState] = useState({ message: '' });
-  const [messeges, setMessages] = useState([]);
+  const [messages, setMessages] = useState([]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (formState.message !== '') {
       setMessages((state) => [...state, formState]);
-      
+      setFormState({ message: '' });
     }
   }
   
@@ -22,14 +23,19 @@ export function ChatRoomPage(props) {
     }));
   }
 
-  console.log(messeges);
+  console.log(messages);
+
   return (
     <div>
       <Button type="button" onClick={props.onSignOut}>Sign out</Button>
       <User src="/avatar.png" username={props.user.username} />
       <form className="form" onSubmit={handleSubmit}>
         <div className="form-field">
-          <InputElement name="message" label="Message" type="text" onChange={handleChange} />
+          <InputElement name="message"
+            label="Message"
+            type="text"
+            onChange={handleChange}
+            value={formState.message} />
         </div>
         <div className="form-field">
           <Button type="submit">Send</Button>
