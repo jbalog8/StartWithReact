@@ -37,6 +37,22 @@ export function ChatRoomPage(props) {
     <div>
       <Button type="button" onClick={props.onSignOut}>Sign out</Button>
       <User src="/avatar.png" username={props.user.username} />
+
+      
+      <form className="form" >
+        <div className="form-field">
+          <InputElement name="username"
+            label="Username"
+            type="text" />
+        </div>
+        
+        <div className="form-field">
+          <Button type="submit">Update</Button>
+        </div>
+
+        
+
+      </form>
       <form className="form" onSubmit={handleSubmit}>
         <div className="form-field">
           <InputElement name="message"
