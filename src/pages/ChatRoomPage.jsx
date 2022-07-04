@@ -6,6 +6,7 @@ import { useState } from "react";
 export function ChatRoomPage(props) {
   const [formState, setFormState] = useState({ message: '' });
   const [messages, setMessages] = useState([]);
+  const [settingsFormState, setSetttingsFormState] = useState({ username: props.user.username })
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -26,6 +27,20 @@ export function ChatRoomPage(props) {
     }));
   }
 
+   const handleSettingsChange = (event) => {
+    setSetttingsFormState((state) => ({
+          ...state,
+          [event.target.name]: event.target.value,
+    }));
+   }
+  
+  const handleSettingsSubmit = (event) => {
+    event.preventDefault();
+    console.log(settingsFormState);
+  }
+
+
+
   const messageElements = messages.map((item, index) => (
     <div key={index}>
       <div>{item.author}</div>
@@ -39,13 +54,15 @@ export function ChatRoomPage(props) {
       <User src="/avatar.png" username={props.user.username} />
 
       
-      <form className="form" >
+      <form className="form" onSubmit={handleSettingsSubmit} >
         <div className="form-field">
           <InputElement name="username"
             label="Username"
-            type="text" />
+            type="text"
+            onChange={handleSettingsChange}
+            value={ setFormState.username} />
         </div>
-        
+
         <div className="form-field">
           <Button type="submit">Update</Button>
         </div>
