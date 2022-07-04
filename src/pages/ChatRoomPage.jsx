@@ -3,6 +3,7 @@ import { InputElement } from "../components/InputElement";
 import { User } from "../components/User";
 import { useState } from "react";
 import { SettingsForm } from "../components/SettingsForm";
+import { Avatar } from "../components/Avatar";
 
 export function ChatRoomPage(props) {
   const [formState, setFormState] = useState({ message: '' });
@@ -41,6 +42,8 @@ export function ChatRoomPage(props) {
         backgroundColor: item.settings.backgroundColor || "transparent",
         color: item.settings.textColor || "black"
       }}>
+      <div><Avatar username={item.settings.displayName || item.author}
+        src={ item.settings.avatarUrl || "/avatar.png"} /></div>
       <div>{item.settings.displayName||item.author}</div>
       <div>{item.message}</div>
     </div>
@@ -58,7 +61,8 @@ export function ChatRoomPage(props) {
 
       <form className="form" onSubmit={handleSubmit}>
         <div className="form-field">
-          <InputElement name="message"
+          <InputElement 
+          name="message"
             label="Message"
             type="text"
             onChange={handleChange}
