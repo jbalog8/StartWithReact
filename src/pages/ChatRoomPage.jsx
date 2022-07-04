@@ -13,6 +13,7 @@ export function ChatRoomPage(props) {
   const updateSettings = (settings) => {
     setSettings({ ...settings });
   }
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -22,13 +23,13 @@ export function ChatRoomPage(props) {
         {
           ...formState,
           author: props.user.username,
-          settings: {...settings},
+          settings: { ...settings },
         },
       ]);
       setFormState({ message: '' });
     }
   }
-  
+
   const handleChange = (event) => {
     setFormState((state) => ({
           ...state,
@@ -41,28 +42,29 @@ export function ChatRoomPage(props) {
       style={{
         backgroundColor: item.settings.backgroundColor || "transparent",
         color: item.settings.textColor || "black"
-      }}>
-      <div><Avatar username={item.settings.displayName || item.author}
-        src={ item.settings.avatarUrl || "/avatar.png"} /></div>
-      <div>{item.settings.displayName||item.author}</div>
+      }}
+    >
+      {item.settings.showAvatar && <div>
+        <Avatar
+          username={item.settings.displayName || item.author}
+          src={item.settings.avatarUrl || "/avatar.png"}
+        />
+      </div>}
+      <div>{item.settings.displayName || item.author}</div>
       <div>{item.message}</div>
     </div>
   ));
 
-
   return (
     <div>
-
       <Button type="button" onClick={props.onSignOut}>Sign out</Button>
-
       <User src="/avatar.png" username={props.user.username} />
 
       <SettingsForm user={props.user} onSubmit={updateSettings} />
 
       <form className="form" onSubmit={handleSubmit}>
         <div className="form-field">
-          <InputElement 
-          name="message"
+          <InputElement name="message"
             label="Message"
             type="text"
             onChange={handleChange}
