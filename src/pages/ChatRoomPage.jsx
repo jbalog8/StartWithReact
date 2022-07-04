@@ -7,14 +7,22 @@ import { SettingsForm } from "../components/SettingsForm";
 export function ChatRoomPage(props) {
   const [formState, setFormState] = useState({ message: '' });
   const [messages, setMessages] = useState([]);
+  const [settings, setSettings] = useState({});
 
+  const updateSettings = (settings) => {
+    setSettings({ ...settings });
+  }
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (formState.message !== '') {
       setMessages((state) => [
         ...state,
-        { ...formState, author: props.user.username },
+        {
+          ...formState,
+          author: props.user.username,
+          settings: {...settings},
+        },
       ]);
       setFormState({ message: '' });
     }
@@ -28,8 +36,9 @@ export function ChatRoomPage(props) {
   }
 
   const messageElements = messages.map((item, index) => (
-    <div key={index}>
-      <div>{item.author}</div>
+    <div key={index}
+      style = {{color: item.settings.textColor || "black"}}>
+      <div>{item.settings.displayName||item.author}</div>
       <div>{item.message}</div>
     </div>
   ));
@@ -37,9 +46,11 @@ export function ChatRoomPage(props) {
 
   return (
     <div>
+
       <Button type="button" onClick={props.onSignOut}>Sign out</Button>
       <User src="/avatar.png" username={props.user.username} />
-      <SettingsForm user={props.user} />
+      
+      <SettingsForm user={props.user} onSubmit={updateSettings} />
 
       <form className="form" onSubmit={handleSubmit}>
         <div className="form-field">
