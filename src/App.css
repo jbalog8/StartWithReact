@@ -1,20 +1,11 @@
 .form {
   padding: 16px;
 }
-.form-field + .form-field {
+
+.form-field+.form-field {
   margin-top: 16px;
 }
 
-select{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid teal;
-  min-height: 32px;
-  padding: 0 8px;
-}
-
-input[type="checkbox"],
 input[type="radio"] {
   width: 1em;
   height: 1em;
@@ -24,7 +15,6 @@ input[type="radio"] {
   margin-right: 0.5em;
 }
 
-input[type="checkbox"]:checked,
 input[type="radio"]:checked {
   background-color: teal;
   box-shadow: inset 0 0 0 2px white;

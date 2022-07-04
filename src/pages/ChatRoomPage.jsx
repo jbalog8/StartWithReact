@@ -3,7 +3,6 @@ import { InputElement } from "../components/InputElement";
 import { User } from "../components/User";
 import { useState } from "react";
 import { SettingsForm } from "../components/SettingsForm";
-import { Avatar } from "../components/Avatar";
 import { Message } from "../components/Message";
 
 export function ChatRoomPage(props) {
@@ -40,11 +39,11 @@ export function ChatRoomPage(props) {
 
   const messageElements = messages.map((item, index) => (
     <Message
-    key={index}
-    settings={item.settings}
-    author={item.author}
-    message={item.message} />
-   
+      key={index}
+      settings={item.settings}
+      author={item.author}
+      message={item.message}
+    />
   ));
 
   return (
@@ -67,9 +66,8 @@ export function ChatRoomPage(props) {
         </div>
       </form>
       <div className="message-list">
-          {messageElements}
+        {messageElements}
       </div>
-     
     </div>
   );
 }

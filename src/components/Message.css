@@ -1,16 +1,13 @@
-.message{
+.message {
     display: grid;
-    grid-template-columns:64px auto;
-    grid-template-rows:24px auto ;
-    
-    grid-template-areas: 
-    "a b"
-    "a c" ;
+    grid-template-columns: 64px auto;
+    grid-template-rows: 24px auto;
+    grid-template-areas:
+        "a b"
+        "a c";
     column-gap: 8px;
     border-bottom: 1px solid #ddd;
-    ;
     padding: 16px 0;
-    
 }
 
 .message__avatar {
@@ -29,5 +26,4 @@
 
 .message__text {
     grid-area: c;
-
 }
