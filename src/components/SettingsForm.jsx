@@ -77,7 +77,11 @@ export function SettingsForm(props) {
         />
       </div>
       <div className="form-field">
-        <ColorElement />
+        <ColorElement
+          label="Text Color"
+          name="textColor"
+          onChange={handleChange}
+          value={formState.textColor} />
       </div>
       <div className="form-field">
         <Button type="submit">Update</Button>
