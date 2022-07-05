@@ -1,12 +1,13 @@
+import "./ChatRoomPage.css";
+
 import Button from "../components/Button";
-import { InputElement } from "../components/InputElement";
 import { User } from "../components/User";
 import { useState } from "react";
 import { SettingsForm } from "../components/SettingsForm";
 import { Message } from "../components/Message";
+import { MessageForm } from "../components/MessageForm";
 
 export function ChatRoomPage(props) {
-  const [formState, setFormState] = useState({ message: '' });
   const [messages, setMessages] = useState([]);
   const [settings, setSettings] = useState({});
 
@@ -14,27 +15,15 @@ export function ChatRoomPage(props) {
     setSettings({ ...settings });
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    if (formState.message !== '') {
-      setMessages((state) => [
-        ...state,
-        {
-          ...formState,
-          author: props.user.username,
-          settings: { ...settings },
-        },
-      ]);
-      setFormState({ message: '' });
-    }
-  }
-
-  const handleChange = (event) => {
-    setFormState((state) => ({
-          ...state,
-          [event.target.name]: event.target.value,
-    }));
+  const handleSubmit = (formState) => {
+    setMessages((state) => [
+      ...state,
+      {
+        ...formState,
+        author: props.user.username,
+        settings: { ...settings },
+      },
+    ]);
   }
 
   const messageElements = messages.map((item, index) => (
@@ -47,26 +36,25 @@ export function ChatRoomPage(props) {
   ));
 
   return (
-    <div>
-      <Button type="button" onClick={props.onSignOut}>Sign out</Button>
-      <User src="/avatar.png" username={props.user.username} />
-
-      <SettingsForm user={props.user} onSubmit={updateSettings} />
-
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="form-field">
-          <InputElement name="message"
-            label="Message"
-            type="text"
-            onChange={handleChange}
-            value={formState.message} />
+    <div className="chat-room-page">
+      <div className="chat-room-page__settings">
+        <div className="chat-room-page__settings-row">
+          <User src="/avatar.png" username={props.user.username} />
         </div>
-        <div className="form-field">
-          <Button type="submit">Send</Button>
+        <div className="chat-room-page__settings-row">
+          <Button type="button" onClick={props.onSignOut}>Sign out</Button>
         </div>
-      </form>
-      <div className="message-list">
-        {messageElements}
+        <div className="chat-room-page__settings-row">
+          <SettingsForm user={props.user} onSubmit={updateSettings} />
+        </div>
+      </div>
+      <div className="chat-room-page__chat">
+        <div className="chat-room-page__chat-message-list">
+          {messageElements}
+        </div>
+        <div className="chat-room-page__chat-message-form">
+          <MessageForm onSubmit={handleSubmit} />
+        </div>
       </div>
     </div>
   );
