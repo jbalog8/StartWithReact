@@ -1,15 +1,18 @@
 //import "/ColorElement.css";
 
+import { useRef } from "react";
+
 export function ColorElement(props) {
+    const inputRef = useRef();
 
     const openColorPicker = () => {
-        console.log('openColorPicker');
+        inputRef.current.click();
     }
 
     return (
         <div>
             <button type="button" onClick={openColorPicker}>Color picker</button>
-            <input type="color" />
+            <input ref={inputRef} type="color" />
         </div>
         )
     
