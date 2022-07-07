@@ -5,14 +5,14 @@ import { ChatRoomPage } from "./pages/ChatRoomPage";
 import { AppContext } from "./contexts/AppContext";
 
 function App() {
-  const { user, clearUser, storeUser } = useContext(AppContext);
+  const { user } = useContext(AppContext);
 
   const isSignedIn = user !== null;
 
   return (
     <div>
-      {isSignedIn && <ChatRoomPage onSignOut={clearUser} user={user} />}
-      {!isSignedIn && <SignInPage onSignIn={storeUser} />}
+      {isSignedIn && <ChatRoomPage />}
+      {!isSignedIn && <SignInPage />}
     </div>
   );
 }
