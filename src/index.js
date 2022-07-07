@@ -16,6 +16,20 @@ function TermsOfServicePage() {
   );
 }
 
+function NotFoundPage() {
+  return (
+    <div>
+      <h1 style={{ color: "red", fontSize: 100, textAlign: "center" }}>404</h1>
+      <h3 style={{ color: "red", fontSize: 100, textAlign: "center" }}>Page Not Found</h3>
+      <p>
+        <Link to="/">Go Home</Link>
+
+      </p>
+    </div>
+  );
+};
+
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -24,6 +38,7 @@ root.render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/tos" element={<TermsOfServicePage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </AppProvider>
     </BrowserRouter>
