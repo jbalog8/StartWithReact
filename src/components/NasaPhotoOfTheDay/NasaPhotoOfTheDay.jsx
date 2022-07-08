@@ -1,12 +1,11 @@
 import "./NasaPhotoOfTheDay.css";
+
+import { useEffect, useState } from "react";
 import data from "./data.json";
-import { useState } from "react";
-import { useEffect } from "react";
 
 function getPhotoOfTheDay() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      
       resolve(data);
     }, 5000);
   });
@@ -18,28 +17,16 @@ export function NasaPhotoOfTheDay() {
 
   useEffect(() => {
     getPhotoOfTheDay()
-      .then((data) => {
-        setData(data)
-      })
-      .catch(() => {
-        setError(new Error("Something went wrong"));
-      
-      });
+      .then((data) => { setData(data); })
+      .catch(() => { setError(new Error('Something went wrong')); });
   }, []);
 
-  console.log(data);
-
   if (error !== null) {
-    return <div>
-      Something went wrong
-    </div>
+    return <div>Something went wrong!</div>;
   }
- 
-  
+
   if (data === null) {
-    return <div>
-      Loading...
-    </div>
+    return <div>Loading...</div>;
   }
 
   return (
