@@ -1,14 +1,14 @@
 import "./NasaPhotoOfTheDay.css";
 
 import { useEffect, useState } from "react";
-import data from "./data.json";
+
 
 function getPhotoOfTheDay() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(data);
-    }, 5000);
-  });
+ return fetch("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY")
+    .then((response) => {
+      return response.json();
+    });
+  
 }
 
 export function NasaPhotoOfTheDay() {
