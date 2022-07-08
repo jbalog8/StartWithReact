@@ -1,1 +1,1 @@
-export { NasaPhotoOfTheDay } from "./NasaFotoOfTheDay";
+export { NasaPhotoOfTheDay } from "./NasaPhotoOfTheDay";
